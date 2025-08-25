@@ -25,6 +25,9 @@ jobs:
       - name: Create version.json
         run: |
           echo "{\"version\": \"$(date +%s)\"}" > version.json
+      - name: Fetch latest changes
+        run: |
+          git pull --rebase origin main
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
