@@ -1,13 +1,13 @@
 name: Update site from Google Sheet
 
 on:
-  schedule:
-    - cron: "*/1 * * * *"   # chạy mỗi 30 phút
-  workflow_dispatch:          # cho phép chạy tay
+  repository_dispatch:
+    types: [update-sheet]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
