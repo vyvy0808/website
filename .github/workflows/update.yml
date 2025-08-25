@@ -22,7 +22,9 @@ jobs:
 
       - name: Run update script
         run: node update.js
-
+      - name: Create version.json
+        run: |
+          echo "{\"version\": \"$(date +%s)\"}" > version.json
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
