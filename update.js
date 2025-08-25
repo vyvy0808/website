@@ -44,6 +44,9 @@ async function main() {
   </html>`;
 
   fs.writeFileSync("index.html", html);
+
+  const versionData = { version: Date.now().toString() };
+  fs.writeFileSync("version.json", JSON.stringify(versionData, null, 2));
 }
 
 main();
