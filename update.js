@@ -41,6 +41,26 @@ async function main() {
   html += `
     </table>
   </body>
+  <script>
+async function checkVersion() {
+  try {
+    const res = await fetch('version.json?nocache=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+    const currentVersion = localStorage.getItem('siteVersion');
+    if (!currentVersion) {
+      localStorage.setItem('siteVersion', data.version);
+    } else if (currentVersion !== data.version) {
+      localStorage.setItem('siteVersion', data.version);
+      location.reload();
+    }
+  } catch (err) {
+    console.error('Version check failed', err);
+  }
+}
+setInterval(checkVersion, 30000);
+checkVersion();
+</script>
   </html>`;
 
   fs.writeFileSync("index.html", html);
