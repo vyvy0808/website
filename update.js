@@ -2,7 +2,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 
 // Thay link này bằng link CSV của bạn
-const sheetUrl = "https://docs.google.com/spreadsheets/d/<SHEET_ID>/pub?output=csv";
+const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTL_5cixDsZizSGiWDRGUt9VpqQk4tJ06jaIbhAxakydY0Dp1pbW8-vjga9LCO2el0ToYaJ6IjL1N-S/pub?output=csv";
 
 async function main() {
   const res = await fetch(sheetUrl);
