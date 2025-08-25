@@ -14,7 +14,27 @@
   <body>
     <h1>Danh sách chi bộ</h1>
     <table>
-  <tr><th>STT</th><th>Họ và tên</th><th>MSSV</th></tr><tr><td>1</td><td>Nguyễn Văn A</td><td>23521826</td></tr><tr><td>2</td><td>Nguyễn Văn B</td><td>1234556</td></tr><tr><td>3</td><td>Nguyễn Thị K</td><td>1234</td></tr><tr><td>4</td><td>Nguyễn Thị An</td><td>1234</td></tr>
+  <tr><th>STT</th><th>Họ và tên</th><th>MSSV</th></tr><tr><td>1</td><td>Nguyễn Văn A</td><td>23521826</td></tr><tr><td>2</td><td>Nguyễn Văn B</td><td>1234556</td></tr><tr><td>3</td><td>Nguyễn Thị K</td><td>1234</td></tr><tr><td>4</td><td>Nguyễn Thị An</td><td>1234</td></tr><tr><td>5</td><td>Nguyễn Văn</td><td>123</td></tr>
     </table>
   </body>
+  <script>
+async function checkVersion() {
+  try {
+    const res = await fetch('version.json?nocache=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+    const currentVersion = localStorage.getItem('siteVersion');
+    if (!currentVersion) {
+      localStorage.setItem('siteVersion', data.version);
+    } else if (currentVersion !== data.version) {
+      localStorage.setItem('siteVersion', data.version);
+      location.reload();
+    }
+  } catch (err) {
+    console.error('Version check failed', err);
+  }
+}
+setInterval(checkVersion, 30000);
+checkVersion();
+</script>
   </html>
